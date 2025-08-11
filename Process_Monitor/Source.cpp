@@ -28,10 +28,10 @@ bool IsProcessRunningByName(const std::wstring& name) {
 
 int main() {
     setlocale(LC_ALL, "Ru");
-    const std::wstring target = L"notepad++.exe"; // имя процесса чувствительно к регистру
+    const std::wstring target = L"notepad++.exe"; // The process name is case sensitive
     const auto timeout = std::chrono::seconds(20);
 
-    std::wcout << L"Мониторинг процесса: " << target << L"\n";
+    std::wcout << L"Мониторинг процесса: " << target << L"\n"; //Debug run 
 
     std::chrono::steady_clock::time_point missingSince{};
     bool wasMissing = false;
@@ -52,7 +52,7 @@ int main() {
                 auto absentFor = std::chrono::steady_clock::now() - missingSince;
                 if (absentFor >= timeout) {
                     //ExitWindowsEx(EWX_LOGOFF, 0);
-                    std::cout << "Процесс выключен\n"; //отладочный код
+                    std::cout << "Процесс выключен\n"; //Debug run
                     break;
                 }
             }
